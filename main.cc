@@ -32,7 +32,6 @@ int main(int argc, char** argv){
     while(tmp!=NULL){
 	cout<<tmp->name<<" ";
 	node_num++;
-	//tmp->degree=0;
 	tmp=tmp->next;
     }
     cout<<"\nnode_num : "<<node_num<<endl;
@@ -55,8 +54,8 @@ int main(int argc, char** argv){
 	i++;
 	tmp=tmp->next;
     }
-    for(i=0;i<node_num;i++)
-	cout<<"name_table["<<i<<"] : "<<name_table[i]<<endl;
+    //for(i=0;i<node_num;i++)
+	//cout<<"name_table["<<i<<"] : "<<name_table[i]<<endl;
 
     map<string, int> m;//a map: name to index
     tmp=nlist;
@@ -85,7 +84,9 @@ int main(int argc, char** argv){
       A_matrix[m[elist->tail->name]][m[elist->head->name]]++;
       elist=elist->next;
     }
-    cout<<"\ta\tb\tc\td\te\n";
+    for(i=0;i<node_num;i++)
+    cout<<"\t"<<name_table[i];
+    cout<<endl;
     for(i=0;i<node_num;i++){
 	cout<<name_table[i]<<"\t";
       for(int j=0;j<node_num;j++){
@@ -107,8 +108,8 @@ int main(int argc, char** argv){
 	  degree.push_back(temp);
       }
     }
-    for(i=0;i<degree.size();i++)
-	cout<<"degree["<<name_table[i]<<"] = "<<degree[i]<<endl;
+    //for(i=0;i<degree.size();i++)
+	//cout<<"degree["<<name_table[i]<<"] = "<<degree[i]<<endl;
 //----------------------------------//
 
 //------add extra edge on add degree node------//
@@ -164,7 +165,9 @@ int main(int argc, char** argv){
       A_matrix[m[elist->tail->name]][m[elist->head->name]]++;
       elist=elist->next;
     }
-    cout<<"\ta\tb\tc\td\te\n";
+    for(i=0;i<node_num;i++)
+    cout<<"\t"<<name_table[i];
+    cout<<endl;
     for(i=0;i<node_num;i++){
 	cout<<name_table[i]<<"\t";
       for(int j=0;j<node_num;j++){
@@ -177,9 +180,12 @@ int main(int argc, char** argv){
 
     int start =0;
     FindEulerCircuit(start, A_matrix);
+    cout<<"\n\n***************************************\n";
+    cout<<"solution of chinese postman problem\n";
     for(int i=0; i<trails.size();i++){
 	cout<<name_table[trails[i].second]<<"-->"<<name_table[trails[i].first]<<endl;
     }
+    cout<<"***************************************\n\n";
 
 
     //using gplot to export a dot file, and then using graphviz to generate the figure
