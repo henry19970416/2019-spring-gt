@@ -3,6 +3,7 @@
 */
 #include <map>
 #include <iostream>
+#include <queue>
 #include "network_manager.h"
 #include "gplot.h"
 #include "path.h"
@@ -10,9 +11,9 @@
 using namespace std;
 vector< pair<int,int>> trails;
 void FindEulerCircuit(int x, vector< vector<int> > &A_matrix);
-void Find_path(int src, int dst, vector< vector<int> > &adj);
+void Find_path(int src, int dst, vector< vector<int> > &adj, string name_table[]);
 void Dijkstra(int src, int parent[], int d[], bool visit[], vector< vector<int> > &adj);
-void find_path(int src, int dst, vector< vector<int> > &adj);
+void find_path(int src, int dst, vector< vector<int> > &adj, string name_table[]);
 // create NetworkManager first
 NetworkManager *nm = new NetworkManager();
 int node_num;
@@ -22,7 +23,7 @@ int main(int argc, char** argv){
     /* start your program */
 
     // read from file
-    nm->interpret("topo1.txt");
+    nm->interpret("topo.txt");
 
     //count node number
     //int node_num = 0;//********************
@@ -94,7 +95,6 @@ int main(int argc, char** argv){
       }
     }
 //----------------------------------//
-    Find_path(m["a"],m["e"],A_matrix);//----------------------------------
 
 //-----------count degree-----------//
     vector<int> degree;
@@ -125,23 +125,20 @@ int main(int argc, char** argv){
       }
     }
 
-    for(i=0;i<node_num;i++){
+    int node1, node2;
+    queue<int> Q;//store 2 odd node into a pair
+    for(int i=0;i<node_num;i++){
       if(extra_edge[i]==1){
-	int j=i+1;
-	while(true){//add extra edge between 2 adjacent odd node
-	  if(extra_edge[j]==1 && nm->connected(name_table[i],name_table[j])==0){
-		nm->connect(name_table[i],name_table[j]);
-		cout<<"add : "<<name_table[i]<<"-->"<<name_table[j]<<endl;
-		extra_edge[i]=0;
-		extra_edge[j]=0;
-		break;
-          }
-          else{
-		j++;
-          }
-	}//end of while
+	Q.push(i);
+      }
+      if(Q.size()==2){
+	node1 = Q.front(); Q.pop();
+	node2 = Q.front(); Q.pop();
+	Find_path(node1,node2,A_matrix,name_table);//add edge along path from node1 to node2
+	cout<<endl;
       }
     }
+
 //---------------------------------------------//
 
     //count edge number again
@@ -184,10 +181,6 @@ int main(int argc, char** argv){
 	cout<<name_table[trails[i].second]<<"-->"<<name_table[trails[i].first]<<endl;
     }
 
-    //print the edge
-    /*nm->print_all_v();
-    nm->print_all_e();*/
-
 
     //using gplot to export a dot file, and then using graphviz to generate the figure
     Gplot *gp = new Gplot();
@@ -197,6 +190,7 @@ int main(int argc, char** argv){
 
     return 0;
 }
+//------------------end of main function-------------------//
 
 void FindEulerCircuit(int x, vector< vector<int> > &A_matrix){
   for(int y=0; y<node_num; ++y){
@@ -250,19 +244,21 @@ void Dijkstra(int src, int parent[], int d[], bool visit[], vector< vector<int> 
     }
 }
 
-void find_path(int dst, int parent[])   // Print the shortest path to dst
+void find_path(int dst, int parent[], string name_table[])   
+// Print the shortest path to dst
 {
     if (dst != parent[dst]) // Print the privious path
     {
-        find_path(parent[dst], parent);
-        cout << dst <<"<--"<<parent[dst]<<endl;  // Print the destination
+        find_path(parent[dst], parent,name_table);
+	nm->connect(name_table[dst],name_table[parent[dst]]);
+        cout << name_table[dst] <<"<--"<<name_table[parent[dst]]<<endl;  // Print the destination
     }
 }
-void Find_path(int src, int dst, vector< vector<int> > &adj){
+void Find_path(int src, int dst, vector< vector<int> > &adj, string name_table[]){
 	int* parent = new int[node_num];
 	int* d = new int[node_num];
 	bool* visit = new bool[node_num];
 	
 	Dijkstra(src, parent, d, visit, adj);
-	find_path(dst, parent);
+	find_path(dst, parent,name_table);
 }
