@@ -10,6 +10,9 @@
 using namespace std;
 vector< pair<int,int>> trails;
 void FindEulerCircuit(int x, vector< vector<int> > &A_matrix);
+void Find_path(int src, int dst, vector< vector<int> > &adj);
+void Dijkstra(int src, int parent[], int d[], bool visit[], vector< vector<int> > &adj);
+void find_path(int src, int dst, vector< vector<int> > &adj);
 // create NetworkManager first
 NetworkManager *nm = new NetworkManager();
 int node_num;
@@ -91,6 +94,7 @@ int main(int argc, char** argv){
       }
     }
 //----------------------------------//
+    Find_path(m["a"],m["e"],A_matrix);//----------------------------------
 
 //-----------count degree-----------//
     vector<int> degree;
@@ -124,7 +128,7 @@ int main(int argc, char** argv){
     for(i=0;i<node_num;i++){
       if(extra_edge[i]==1){
 	int j=i+1;
-	while(true){//add extra edge between 2 adjacent add node
+	while(true){//add extra edge between 2 adjacent odd node
 	  if(extra_edge[j]==1 && nm->connected(name_table[i],name_table[j])==0){
 		nm->connect(name_table[i],name_table[j]);
 		cout<<"add : "<<name_table[i]<<"-->"<<name_table[j]<<endl;
@@ -203,4 +207,62 @@ void FindEulerCircuit(int x, vector< vector<int> > &A_matrix){
 	trails.push_back( make_pair(x,y) );
     }
   }
+}
+
+void Dijkstra(int src, int parent[], int d[], bool visit[], vector< vector<int> > &adj){
+	
+		
+	for (int i=0; i<node_num; i++) visit[i] = false;
+    for (int i=0; i<node_num; i++) d[i] = 1e9;
+ 
+    d[src] = 0;
+    parent[src] = src;
+ 
+    for (int k=0; k<node_num; k++)
+    {	//cout<<"k: "<<k<<endl;
+        int a = -1, b = -1, min = 1e9;
+        for (int i=0; i<node_num; i++){
+        	if (!visit[i] && d[i] < min)
+            {
+                a = i;  // Record the chosen edge
+                min = d[i];
+                //cout<<"a: "<<a<<"\t";
+                //cout<<"min: "<<min<<endl;
+            }
+		}
+
+ 
+        if (a == -1) break;     // all the connected node was visit
+        visit[a] = true;
+ 
+        // edge<a,b> doing relaxation
+        for (b=0; b<node_num; b++){
+            if (!visit[b] && d[a] + adj[a][b] < d[b] && adj[a][b]!=0)
+            {
+                d[b] = d[a] + adj[a][b];
+                parent[b] = a;
+                //cout<<"d["<<b<<"] : "<<d[b]<<"\t";
+                //cout<<"parent["<<b<<"] : "<<parent[b]<<endl;
+            }
+		}
+		
+		//cout<<"---------------------------\n\n";
+    }
+}
+
+void find_path(int dst, int parent[])   // Print the shortest path to dst
+{
+    if (dst != parent[dst]) // Print the privious path
+    {
+        find_path(parent[dst], parent);
+        cout << dst <<"<--"<<parent[dst]<<endl;  // Print the destination
+    }
+}
+void Find_path(int src, int dst, vector< vector<int> > &adj){
+	int* parent = new int[node_num];
+	int* d = new int[node_num];
+	bool* visit = new bool[node_num];
+	
+	Dijkstra(src, parent, d, visit, adj);
+	find_path(dst, parent);
 }
