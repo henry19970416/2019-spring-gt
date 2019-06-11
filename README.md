@@ -31,4 +31,3 @@ A output file "solution.txt" with the path
 ```
 ##
 
-#
