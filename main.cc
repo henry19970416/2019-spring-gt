@@ -4,6 +4,7 @@
 #include <map>
 #include <iostream>
 #include <queue>
+#include <fstream>
 #include "network_manager.h"
 #include "gplot.h"
 #include "path.h"
@@ -180,12 +181,15 @@ int main(int argc, char** argv){
 
     int start =0;
     FindEulerCircuit(start, A_matrix);
+    ofstream fout("solution.txt");
     cout<<"\n\n***************************************\n";
     cout<<"solution of chinese postman problem\n";
     for(int i=0; i<trails.size();i++){
 	cout<<name_table[trails[i].second]<<"-->"<<name_table[trails[i].first]<<endl;
+	fout<<name_table[trails[i].second]<<"-->"<<name_table[trails[i].first]<<endl;
     }
     cout<<"***************************************\n\n";
+    fout.close();
 
 
     //using gplot to export a dot file, and then using graphviz to generate the figure
