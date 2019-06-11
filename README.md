@@ -15,20 +15,20 @@ This program can only deal with undirected graph.
 ###
 ##
 
-##Solution
+#Solution
 
-###File
+##File
 ```
 A output file "solution.txt" with the path
 ```
-###
+##
 
-###Cout
+##Cout
 ```
 1. show adjacent matrix initial
 2. show adjacent matrix again after adding some edge
 3. show the Path
 ```
-###
-
 ##
+
+#
