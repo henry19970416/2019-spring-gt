@@ -45,11 +45,12 @@ A output file "solution.txt" with the path
 
 * Step of the program
 
-After read in the topo.txt
-
+  After read in the topo.txt
+```
 1. Count the number of node and edge
 2. Build the adjacency matrix
 3. Determine degree of each Node
 4. Add edges along path between 2 odd degree node 
 5. Update adjacency matrix
 6. Find Euler Path
+```
