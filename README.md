@@ -10,17 +10,17 @@ This program can only deal with undirected graph.
 2. execute "make" command
 3. execute "./main.out" command
 ```
+#
 
 
+## Solution
 
-##Solution
-
-###File
+### File
 ```
 A output file "solution.txt" with the path
 ```
 
-###Cout
+### Cout
 ```
 1. show adjacent matrix initial
 2. show adjacent matrix again after adding some edge
