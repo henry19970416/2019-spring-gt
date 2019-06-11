@@ -12,6 +12,8 @@ This program can only deal with undirected graph.
 2. execute "make" command
 3. execute "./main.out" command
 ```
+###
+##
 
 ##Solution
 
@@ -19,6 +21,7 @@ This program can only deal with undirected graph.
 ```
 A output file "solution.txt" with the path
 ```
+###
 
 ###Cout
 ```
@@ -26,4 +29,6 @@ A output file "solution.txt" with the path
 2. show adjacent matrix again after adding some edge
 3. show the Path
 ```
+###
 
+##
