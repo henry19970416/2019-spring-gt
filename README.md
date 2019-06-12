@@ -31,25 +31,24 @@ A output file "solution.txt" with the path
 ## How does program run
 
 * Idea
-```
-All of the node in graph is even degree then there exist an Euler Circuit.
 
-If odd degree node exist that means it must walk on some edges not only one time.
+      All of the node in graph is even degree then there exist an Euler Circuit.
 
-The repeat path can be thought as adding another edge and walking on it.
+      If odd degree node exist that means it must walk on some edges not only one time.
 
-So, our goal is to "make all node with even degree"
+      The repeat path can be thought as adding another edge and walking on it.
 
-- If all node has even degree. 
-  Solution exist.
-  Find the solution directely.
+      So, our goal is to "make all node with even degree"
 
-- If there are some node with odd degree. 
-  Add some extra edge along the path between 2 odd degree node.
-  Make all of the nodes has even degree.
-  Find the solution.
+      - If all node has even degree. 
+        Solution exist.
+        Find the solution directely.
+
+      - If there are some node with odd degree. 
+        Add some extra edge along the path between 2 odd degree node.
+        Make all of the nodes has even degree.
+        Find the solution.
   
-```
 
 * Step of the program
 
