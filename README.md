@@ -54,14 +54,14 @@ So, our goal is to "make all node with even degree"
 * Step of the program
 
   After read in the topo.txt
-```
-1. Count the number of node and edge
-2. Build the adjacency matrix
-3. Determine degree of each Node
-4. Add edges along path between 2 odd degree node 
-5. Update adjacency matrix
-6. Find Euler Path
-```
+
+      1. Count the number of node and edge
+      2. Build the adjacency matrix
+      3. Determine degree of each Node
+      4. Add edges along path between 2 odd degree node 
+      5. Update adjacency matrix
+      6. Find Euler Path
+
 ## Algorithm I use
 
 * Dijkstra
@@ -77,25 +77,25 @@ There are 3 variable :
                         
 Concept
 
-```
-Initail : 
-          source.distant = 0. ohter_node.distant = infinity.
-          source.parent = source. other_node.parent = NIL.
-          
-1. If there are unvisited node.
 
-   u = unvisited node with min(distant), the node we want to visit now.
-   
-   u.visit = true;
-   
-2. for every node v (adjacent node of u && unvisited)
+    Initail : 
+              source.distant = 0. ohter_node.distant = infinity.
+              source.parent = source. other_node.parent = NIL.
 
-    - Update the distant if (distant[v] < edge(u,v) + distant[u])
-    
-    - u.parent = v;
-    
-Repeat step1,2 until all node has visited.
-```
+    1. If there are unvisited node.
+
+       u = unvisited node with min( distant), the node we want to visit now.
+
+       u.visit = true;
+
+    2. for every node v (adjacent node of u && unvisited)
+
+        - Update the distant if (distant[v] < edge(u,v) + distant[u])
+
+        - u.parent = v;
+
+    Repeat step1,2 until all node has visited.
+
 
 * Find_Path
 
@@ -108,13 +108,13 @@ Repeat step1,2 until all node has visited.
 * EulerCircuit
 
 Just like DFS algorithm.
-```
-1. When we find a edge can walk, just walk it until no edge can walk.
 
-2. Trace back the edge and put the edge into the trails.
+    1. When we find a edge can walk, just walk it until no edge can walk.
 
-Repeat step1 & step2 until all node has been visited.
-```
+    2. Trace back the edge and put the edge into the trails.
+
+    Repeat step1 & step2 until all node has been visited.
+
 
 ## Program implementation
 
