@@ -75,6 +75,8 @@ There are 3 variable :
     visit[] : false => node is not visited.
               true  => node is visited.
                         
+Concept
+
 ```
 Initail : 
           source.distant = 0. ohter_node.distant = infinity.
@@ -94,6 +96,14 @@ Initail :
     
 Repeat step1,2 until all node has visited.
 ```
+
+### Find_Path
+
+    Given a source and destination
+    
+    Use the parent[] we just build from Dijkstra algorithm.
+    
+    Use recusive to trace the parent of destination until parent = source.
 
 ### EulerCircuit
 Just like DFS algorithm.
