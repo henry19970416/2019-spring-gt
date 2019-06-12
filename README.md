@@ -64,12 +64,14 @@ So, our goal is to "make all node with even degree"
 ```
 ## Algorithm I use
 
-###Dijkstra
+### Dijkstra
+
 There are 2 variable :
 
                         distant[] : distant from source to the node.
 
                         parent[] : last node come from the path.
+                        
 ```
 Initail : 
 ```
