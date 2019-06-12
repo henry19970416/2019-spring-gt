@@ -13,7 +13,7 @@ This program can only deal with undirected graph.
 
 
 
-## Solution
+## Output
 
 Solution will be show in 2 ways
 
@@ -32,6 +32,14 @@ A output file "solution.txt" with the path
 
 * Idea
 ```
+All of the node in graph is even degree then there exist an Euler Circuit.
+
+If odd degree node exist that means it must walk on some edges not only one time.
+
+The repeat path can be thought as adding another edge and walking on it.
+
+So, our goal is to "make all node with even degree"
+
 - If all node has even degree. 
   Solution exist.
   Find the solution directely.
