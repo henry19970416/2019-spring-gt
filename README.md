@@ -62,3 +62,24 @@ So, our goal is to "make all node with even degree"
 5. Update adjacency matrix
 6. Find Euler Path
 ```
+## Algorithm I use
+
+###Dijkstra
+There are 2 variable :
+
+                        distant[] : distant from source to the node.
+
+                        parent[] : last node come from the path.
+```
+Initail : 
+```
+
+### EulerCircuit
+Just like DFS algorithm.
+```
+1. When we find a edge can walk, just walk it until no edge can walk.
+
+2. Trace back the edge and put the edge into the trails.
+
+Repeat step1 & step2 until all node has been visited.
+```
