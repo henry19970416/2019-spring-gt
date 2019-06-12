@@ -66,14 +66,33 @@ So, our goal is to "make all node with even degree"
 
 ### Dijkstra
 
-There are 2 variable :
+There are 3 variable :
 
     distant[] : distant from source to the node.
 
     parent[] : last node come from the path.
+    
+    visit[] : false => node is not visited.
+              true  => node is visited.
                         
 ```
 Initail : 
+          source.distant = 0. ohter_node.distant = infinity.
+          source.parent = source. other_node.parent = NIL.
+          
+1. If there are unvisited node.
+
+   u = unvisited node with min(distant), the node we want to visit now.
+   
+   u.visit = true;
+   
+2. for every node v (adjacent node of u && unvisited)
+
+    - Update the distant if (distant[v] < edge(u,v) + distant[u])
+    
+    - u.parent = v;
+    
+Repeat step1,2 until all node has visited.
 ```
 
 ### EulerCircuit
