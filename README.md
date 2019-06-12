@@ -1,7 +1,9 @@
 # Graph-Theory-Project-Template
 Project template of course - Graph Theory (EE6622E) in National Cheng Kung University.
 
-This program can only deal with undirected graph.
+## Important
+
+    This program can only deal with undirected graph.
 
 ## How to run
 
