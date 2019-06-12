@@ -64,7 +64,7 @@ So, our goal is to "make all node with even degree"
 ```
 ## Algorithm I use
 
-### Dijkstra
+* Dijkstra
 
 There are 3 variable :
 
@@ -97,7 +97,7 @@ Initail :
 Repeat step1,2 until all node has visited.
 ```
 
-### Find_Path
+* Find_Path
 
     Given a source and destination
     
@@ -105,7 +105,7 @@ Repeat step1,2 until all node has visited.
     
     Use recusive to trace the parent of destination until parent = source.
 
-### EulerCircuit
+* EulerCircuit
 Just like DFS algorithm.
 ```
 1. When we find a edge can walk, just walk it until no edge can walk.
@@ -114,3 +114,28 @@ Just like DFS algorithm.
 
 Repeat step1 & step2 until all node has been visited.
 ```
+
+## Program implementation
+
+    1. Get basic iformation of the graph
+    
+       - number of node
+       
+       - number of edge
+       
+       - build adjacency matrix : 
+               For every edge(u,v) => A_matrix[u][v]++ , A_matrix[v][u]++
+               
+       - degree of node
+       
+    2. Find Path
+    
+       - Use algorithm : " Find_path " mentioned above, to find path between 2 odd degree node
+       
+    3. Add Edge
+    
+       - Add extra edge along the path between 2 odd degree node
+       
+    4. Find Euler Circuit
+    
+       - Use algorithm : " FindEulerCircuit " mentioned above, to find Euler circuit
