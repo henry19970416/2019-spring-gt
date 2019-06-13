@@ -136,7 +136,14 @@ Just like DFS algorithm.
        
     3. Add Edge
     
-       - Add extra edge along the path between 2 odd degree node
+       - Use a vector "extra_edge" to record which node need to add extra edge
+       
+       - Check the vector "extra_edge", once I see a node need to add edge
+         Push the node into a queue
+       
+       - Once the queue contain 2 node
+         Add extra edge along the path between 2 odd degree node
+         Pop 2 node from the queue
        
     4. Find Euler Circuit
     
